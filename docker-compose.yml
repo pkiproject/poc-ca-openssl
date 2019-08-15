@@ -4,5 +4,17 @@ services:
         build:
             context: .
         volumes:
-        - ./root-ca/:/root-ca
         - ./scripts:/root-ca/scripts
+        - ./configs:/root-ca/configs
+        - "root-ca:/keypki"
+        environment:
+        - ROOT_CERT_PASS=test
+    intermediate-ca:
+        build:
+            context: .
+        volumes:
+        - ./intermediate-ca:/
+
+volumes:
+  root-ca:
+  intermediate-ca:
